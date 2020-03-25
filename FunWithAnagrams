@@ -1,0 +1,50 @@
+package com.java.tutorial.strings;
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+class Result {
+
+	/*
+	 * Complete the 'funWithAnagrams' function below.
+	 *
+	 * The function is expected to return a STRING_ARRAY. The function accepts
+	 * STRING_ARRAY s as parameter.
+	 */
+
+	public static List<String> funWithAnagrams(List<String> s) {
+		// Write your code here
+		Set<String> uniques = new HashSet<>();
+		List<String> tmp = new ArrayList<>();
+		List<String> result = new ArrayList<>();
+		for (String s1 : s) {
+			char[] ta = s1.toCharArray();
+			Arrays.sort(ta);
+			tmp.add(new String(ta));
+		}
+
+		for (int i = 0; i < s.size(); i++) {
+			if (uniques.add(tmp.get(i))) {
+				result.add(s.get(i));
+			}
+		}
+		Collections.sort(result);
+		return result;
+	}
+}
+
+public class FunWithAnagrams {
+	public static void main(String[] args) throws IOException {
+		List<String> result = Result.funWithAnagrams(Arrays.asList("code", "aaagmnrs", "anagrams", "doce"));
+		System.out.println(result);
+	}
+}
